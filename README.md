@@ -2,6 +2,10 @@
 
 SKY Smart Patrol is a robot patrol system that combines a Flask dashboard, a Nicla Vision camera bridge, and an RP2040 robot controller. The computer dashboard receives live images and telemetry, supports manual and automatic patrol control, runs AI-based road hazard detection, and can send alerts to LINE.
 
+## System Architecture
+
+![Architecture of the AI-Based Smart Campus Safety Inspection and Real-Time Alert System](docs/images/architecture.png)
+
 ## Project Layout
 
 ```text
@@ -207,3 +211,7 @@ git add .
 git commit -m "Update project documentation"
 git push
 ```
+
+
+
+
