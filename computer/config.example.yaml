@@ -1,33 +1,31 @@
-line:
-  channel_id: "YOUR_CHANNEL_ID"
-  channel_secret: "YOUR_CHANNEL_SECRET"
-  channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN"
-  user_id: "YOUR_LINE_USER_ID"
+# Copy this file to config.yaml and fill in your own keys.
+# Never commit config.yaml to GitHub.
 
-line:
-  channel_id: "2010701994"
-  channel_secret: "你的 Channel Secret"
-  channel_access_token: "你的 Channel Access Token"
-  user_id: "你的 LINE User ID"
-
-gemini:
-  api_key: "你的 Gemini API Key"
-  model: "你目前測試成功的 Gemini 模型名稱"
-
-cloudinary:
-  cloud_name: "你的 Cloudinary Cloud name"
-  api_key: "你的 Cloudinary API Key"
-  api_secret: "你的 Cloudinary API Secret"
-  folder: "sky-smart-patrol/potholes"
+detection:
+  # Use "openai" for OpenAI/Azure OpenAI, or "gemini" for Google Gemini.
+  provider: "openai"
 
 openai:
-  api_key: "sk-你的 OpenAI API Key"
-  model: "gpt-5-mini"
+  # Azure OpenAI example:
+  api_key: "YOUR_OPENAI_OR_AZURE_OPENAI_API_KEY"
+  base_url: "https://YOUR-RESOURCE.services.ai.azure.com/openai/v1"
+  model: "YOUR_DEPLOYMENT_NAME"
 
-server:
-  host: "0.0.0.0"
-  port: 5000
+gemini:
+  api_key: "YOUR_GEMINI_API_KEY"
+  model: "gemini-3.1-flash-lite"
 
-device:
-  api_key: "CHANGE_THIS_DEVICE_API_KEY"
+line:
+  channel_id: "YOUR_LINE_CHANNEL_ID"
+  channel_secret: "YOUR_LINE_CHANNEL_SECRET"
+  channel_access_token: "YOUR_LINE_CHANNEL_ACCESS_TOKEN"
+  user_id: "YOUR_LINE_USER_ID_OR_GROUP_ID"
+  # Optional: use this only if you expose the Flask server through public HTTPS.
+  public_base_url: ""
 
+cloudinary:
+  # Required if you want LINE image messages without exposing the local server.
+  cloud_name: "YOUR_CLOUDINARY_CLOUD_NAME"
+  api_key: "YOUR_CLOUDINARY_API_KEY"
+  api_secret: "YOUR_CLOUDINARY_API_SECRET"
+  folder: "sky-smart-patrol"
