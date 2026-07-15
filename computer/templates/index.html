@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>SKY Smart Patrol</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='dashboard.css') }}"
+    >
+    <script
+        src="{{ url_for('static', filename='dashboard.js') }}"
+        defer
+    ></script>
+</head>
+<body>
+    <header>
+        <h1>SKY Smart Patrol</h1>
+        <div id="connection" class="offline">裝置離線</div>
+    </header>
+
+    <main>
+        <section class="card map-card">
+            <h2>巡檢範圍與移動軌跡</h2>
+            <canvas id="map" width="720" height="720"></canvas>
+
+            <div class="grid">
+                <div class="metric">
+                    X 座標
+                    <strong id="x">--</strong>
+                </div>
+                <div class="metric">
+                    Y 座標
+                    <strong id="y">--</strong>
+                </div>
+                <div class="metric">
+                    高度
+                    <strong id="height">--</strong>
+                </div>
+                <div class="metric">
+                    方向
+                    <strong id="heading">--</strong>
+                </div>
+                <div class="metric">
+                    前方距離
+                    <strong id="distance">--</strong>
+                </div>
+                <div class="metric">
+                    模式
+                    <strong id="mode">--</strong>
+                </div>
+                <div class="metric">
+                    狀態
+                    <strong id="status">--</strong>
+                </div>
+                <div class="metric">
+                    速度
+                    <strong id="speedMetric">--</strong>
+                </div>
+                <div class="metric">
+                    回線誤差
+                    <strong id="lineError">--</strong>
+                </div>
+            </div>
+
+
+            <div class="feature-card map-feature">
+                <h2>路面影像辨識與 LINE</h2>
+
+                <div class="integration-grid">
+                    <div>
+                        Gemini
+                        <strong id="geminiStatus">檢查中</strong>
+                    </div>
+                    <div>
+                        LINE
+                        <strong id="lineStatus">檢查中</strong>
+                    </div>
+                </div>
+
+                <label class="check-row" for="notifyLine">
+                    <input id="notifyLine" type="checkbox" checked>
+                    辨識出道路異常時自動發送 LINE
+                </label>
+
+                <div class="detection-actions">
+                    <button id="detect" class="detect">
+                        辨識目前畫面
+                    </button>
+                    <button id="sendCurrentImage">
+                        傳送目前影像
+                    </button>
+                    <button id="sendLine">
+                        傳送辨識結果
+                    </button>
+                    <button id="lineTest">
+                        測試 LINE
+                    </button>
+                </div>
+
+                <div id="detectionPanel" class="detection-panel idle">
+                    <div class="detection-title">
+                        <strong id="detectionHeadline">尚未辨識</strong>
+                        <span id="detectionConfidence">--</span>
+                    </div>
+                    <div id="detectionSummary" class="detection-summary">
+                        按下「辨識目前畫面」後，才會呼叫 AI API。
+                    </div>
+                    <div id="detectionMeta" class="small"></div>
+                    <ul id="detectionEvidence"></ul>
+                </div>
+
+                <p class="small">
+                    相機畫面持續更新不會使用 AI 額度；只有按下辨識按鈕才會送出一張影像。
+                    LINE 圖片可使用 Cloudinary，或由公開 HTTPS 網址提供；未設定時只能傳送文字結果。
+                </p>
+            </div>
+        </section>
+
+        <section class="side-panel">
+            <div class="card camera-card">
+                <h2>Nicla Vision 即時影像</h2>
+                <img id="camera" alt="尚未收到相機影像">
+                <div id="cameraStatus" class="small">等待影像</div>
+                <div id="cameraFps" class="small">影像 FPS：--</div>
+            </div>
+
+            <div class="card control-card">
+                <h2>遠端操控</h2>
+
+                <label for="token">控制密碼</label>
+                <input
+                    id="token"
+                    type="password"
+                    placeholder="輸入 WEB_CONTROL_TOKEN"
+                >
+
+                <div class="speed-row">
+                    <div>
+                        <label for="speed">
+                            車速：
+                            <span id="speedValue" class="speed-value">40%</span>
+                        </label>
+                        <input
+                            id="speed"
+                            type="range"
+                            min="20"
+                            max="100"
+                            step="1"
+                            value="40"
+                        >
+                    </div>
+                    <button id="applySpeed">套用速度</button>
+                </div>
+
+                <div class="controls">
+                    <div></div>
+                    <button data-hold="FORWARD">▲<br>前進</button>
+                    <div></div>
+
+                    <button data-hold="LEFT">◀<br>左轉</button>
+                    <button id="stop" class="stop">■<br>停止</button>
+                    <button data-hold="RIGHT">▶<br>右轉</button>
+
+                    <div></div>
+                    <button data-hold="BACKWARD">▼<br>後退</button>
+                    <div></div>
+                </div>
+
+                <div class="actions">
+                    <button id="auto" class="auto">自動巡檢</button>
+                    <button id="reset">重設位置</button>
+                    <button id="clear">清除軌跡</button>
+                </div>
+
+                <p class="small">
+                    方向鍵或 W/A/S/D 可操控，放開按鍵會停止。空白鍵為緊急停止。
+                </p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+

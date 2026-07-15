@@ -1,0 +1,33 @@
+line:
+  channel_id: "YOUR_CHANNEL_ID"
+  channel_secret: "YOUR_CHANNEL_SECRET"
+  channel_access_token: "YOUR_CHANNEL_ACCESS_TOKEN"
+  user_id: "YOUR_LINE_USER_ID"
+
+line:
+  channel_id: "2010701994"
+  channel_secret: "你的 Channel Secret"
+  channel_access_token: "你的 Channel Access Token"
+  user_id: "你的 LINE User ID"
+
+gemini:
+  api_key: "你的 Gemini API Key"
+  model: "你目前測試成功的 Gemini 模型名稱"
+
+cloudinary:
+  cloud_name: "你的 Cloudinary Cloud name"
+  api_key: "你的 Cloudinary API Key"
+  api_secret: "你的 Cloudinary API Secret"
+  folder: "sky-smart-patrol/potholes"
+
+openai:
+  api_key: "sk-你的 OpenAI API Key"
+  model: "gpt-5-mini"
+
+server:
+  host: "0.0.0.0"
+  port: 5000
+
+device:
+  api_key: "CHANGE_THIS_DEVICE_API_KEY"
+

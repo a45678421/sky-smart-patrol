@@ -1,0 +1,507 @@
+:root {
+  color-scheme: dark;
+  font-family: "Noto Sans TC", "Segoe UI", sans-serif;
+  --bg: #0b0f14;
+  --panel: #141a21;
+  --panel-strong: #19222c;
+  --panel-soft: #10161d;
+  --border: #2d3742;
+  --border-strong: #44515f;
+  --text: #edf4fb;
+  --muted: #98a6b5;
+  --blue: #3387ff;
+  --blue-strong: #1f6feb;
+  --green: #2fbf71;
+  --red: #d84a55;
+  --amber: #d6a231;
+  --shadow: 0 18px 48px rgba(0, 0, 0, .28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(47, 129, 247, .16), transparent 32rem),
+    linear-gradient(135deg, #081018 0%, #0d1117 52%, #10151c 100%);
+  color: var(--text);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 22px;
+  border-bottom: 1px solid rgba(68, 81, 95, .7);
+  background: rgba(11, 15, 20, .88);
+  backdrop-filter: blur(14px);
+}
+
+h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+main {
+  width: min(1480px, 100%);
+  margin: 0 auto;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: minmax(420px, 1.25fr) minmax(320px, .75fr);
+  gap: 18px;
+}
+
+.side-panel {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(25, 34, 44, .96), rgba(17, 23, 31, .96));
+  border: 1px solid rgba(68, 81, 95, .82);
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+
+#connection {
+  padding: 7px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, .04);
+}
+
+#map,
+#camera {
+  width: 100%;
+  display: block;
+  border: 1px solid rgba(68, 81, 95, .55);
+  border-radius: 8px;
+  background: #050a0f;
+}
+
+#map {
+  aspect-ratio: 1 / 1;
+}
+
+#camera {
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.metric,
+.integration-grid > div {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid rgba(68, 81, 95, .55);
+  border-radius: 8px;
+  background: rgba(8, 13, 19, .78);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.metric strong,
+.integration-grid strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 760;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.integration-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+button,
+.controls,
+.actions,
+.detection-actions,
+.speed-row,
+.control-card,
+#map,
+#camera {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+button {
+  min-height: 48px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #293441, #1e2731);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:hover {
+  border-color: #5d6d7f;
+  background: linear-gradient(180deg, #334252, #24303c);
+}
+
+button:active,
+.active {
+  background: linear-gradient(180deg, #2d8cff, #1f6feb) !important;
+  border-color: #6daeff !important;
+  transform: translateY(1px);
+}
+
+button:disabled {
+  cursor: progress;
+  opacity: .6;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(76px, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+  touch-action: none;
+}
+
+.controls button {
+  min-height: 68px;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.stop {
+  background: linear-gradient(180deg, #b83b48, #7d1e29);
+}
+
+.auto {
+  background: linear-gradient(180deg, #238c54, #166739);
+}
+
+.actions,
+.detection-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.detection-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 10px 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: #0b1118;
+  color: var(--text);
+  font-size: 16px;
+}
+
+input:focus,
+button:focus-visible {
+  outline: 2px solid rgba(51, 135, 255, .85);
+  outline-offset: 2px;
+}
+
+input[type="range"] {
+  min-height: 36px;
+  padding: 0;
+  accent-color: var(--blue);
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 12px 0 8px;
+}
+
+.check-row input {
+  width: 18px;
+  min-height: 18px;
+}
+
+.speed-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 108px;
+  gap: 10px;
+  align-items: end;
+  margin-top: 12px;
+}
+
+.speed-value {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+}
+
+.small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.detection-panel {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid rgba(68, 81, 95, .62);
+  border-radius: 8px;
+  background: rgba(8, 13, 19, .7);
+}
+
+.detection-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.detection-summary {
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+#detectionEvidence {
+  padding-left: 18px;
+}
+
+.online { color: var(--green); }
+.offline { color: var(--red); }
+.warn { color: var(--amber); }
+
+.control-card {
+  margin-top: 0;
+}
+
+.map-feature {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(68, 81, 95, .62);
+}
+
+@media (min-width: 761px) and (max-width: 1180px) {
+  header {
+    padding: 10px 16px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+
+  main {
+    width: 100%;
+    min-height: calc(100dvh - 54px);
+    padding: 10px;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+    gap: 10px;
+    align-items: start;
+  }
+
+  .card {
+    padding: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .24);
+  }
+
+  .map-card {
+    position: sticky;
+    top: 64px;
+  }
+
+  .side-panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .camera-card {
+    order: 1;
+  }
+
+  .control-card {
+    order: 2;
+  }
+#map {
+    max-height: min(52dvh, 520px);
+    aspect-ratio: 1 / 1;
+  }
+
+  #camera {
+    max-height: 30dvh;
+    aspect-ratio: 4 / 3;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .metric {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+
+  .metric strong {
+    font-size: 14px;
+  }
+
+  .map-feature {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  .speed-row {
+    grid-template-columns: minmax(0, 1fr) 96px;
+    gap: 8px;
+  }
+
+  .controls {
+    gap: 8px;
+    margin: 10px 0;
+  }
+
+  .controls button {
+    min-height: 58px;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .small {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 760px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .side-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .control-card {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  header {
+    padding: 12px 14px;
+  }
+
+  h1 {
+    font-size: 19px;
+  }
+
+  main {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .side-panel {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .actions,
+  .detection-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .speed-row {
+    grid-template-columns: 1fr;
+  }
+
+  .speed-row button {
+    width: 100%;
+  }
+
+  .controls {
+    grid-template-columns: repeat(3, minmax(72px, 1fr));
+    gap: 8px;
+  }
+
+  .controls button {
+    min-height: 74px;
+  }
+}
+
+@media (max-width: 430px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .metric strong {
+    margin-top: 0;
+    text-align: right;
+  }
+}
